@@ -36,7 +36,7 @@ public class UnityChan2DController : MonoBehaviour
 
         // BoxCollider2D
         m_boxcollier2D.size = new Vector2(1, 2.5f);
-        m_boxcollier2D.center = new Vector2(0, -0.25f);
+        m_boxcollier2D.offset = new Vector2(0, -0.25f);
 
         // Animator
         m_animator.applyRootMotion = false;
