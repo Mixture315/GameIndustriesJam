@@ -6,6 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+<<<<<<< HEAD
+    path: Assets/UnityChan2D/Demo/Scenes/Start.unity
+  - enabled: 1
+    path: Assets/UnityChan2D/Demo/Scenes/Loading 1-1.unity
+  - enabled: 1
+    path: Assets/UnityChan2D/Demo/Scenes/Intro 1-1.unity
+  - enabled: 1
+    path: Assets/UnityChan2D/Demo/Scenes/World 1-1.unity
+=======
+    path: "Assets/Scenes/Takuto/\u30B7\u30FC\u30F3/Game.unity"
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
+>>>>>>> 0f207e394c2c5227a00186735a34be58305ddd94

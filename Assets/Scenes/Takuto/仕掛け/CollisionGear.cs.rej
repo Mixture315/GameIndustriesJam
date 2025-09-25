@@ -1,0 +1,10 @@
+diff a/Assets/Scenes/Takuto/仕掛け/CollisionGear.cs b/Assets/Scenes/Takuto/仕掛け/CollisionGear.cs	(rejected hunks)
+@@ -7,7 +7,7 @@
+     // ����Ώۂ�C���X�y�N�^�[�Ŏw��ł���悤�ɂ���
+     public GameObject target;
+     // ���[�v�ʒu
+-    public Vector2 teleportPosition = new Vector2(0, 0);
++    public Vector2 playerTeleportPos = new Vector2(0, 0);
+ 
+     // Start is called before the first frame update
+     void Start()
