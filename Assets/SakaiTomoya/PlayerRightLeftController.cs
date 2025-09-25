@@ -9,7 +9,7 @@ public class PlayerRightLeftController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        name = gameObject.name;
+        myName = gameObject.name;
         playerController = transform.parent.GetComponent<PlayerController>();
     }
 
@@ -23,11 +23,11 @@ public class PlayerRightLeftController : MonoBehaviour
     {
         if (collision.isTrigger == false)
         {
-            if(myName == "Right")
+            if(myName == "Right" && collision.gameObject != playerController.gameObject)
             {
                 playerController.isRightWallTouch = true;
             }
-            else if(myName == "Left")
+            else if(myName == "Left" && collision.gameObject != playerController.gameObject)
             {
                 playerController.isLeftWallTouch = true;
             }
@@ -38,11 +38,11 @@ public class PlayerRightLeftController : MonoBehaviour
     {
         if (collision.isTrigger == false)
         {
-            if (myName == "Right")
+            if (myName == "Right" && collision.gameObject != playerController.gameObject)
             {
                 playerController.isRightWallTouch = false;
             }
-            else if (myName == "Left")
+            else if (myName == "Left" && collision.gameObject != playerController.gameObject)
             {
                 playerController.isLeftWallTouch = false;
             }
