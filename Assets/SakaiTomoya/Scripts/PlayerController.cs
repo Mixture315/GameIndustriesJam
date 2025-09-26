@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D myRigid;
 
+    ParticleSystem leftDashEffect;
+    ParticleSystem rightDashEffect;
     Animator myAnim;
     SpriteRenderer mySpriteRenderer;
     AudioSource myAudioSource;
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAudioSource = GetComponent<AudioSource>();
+        leftDashEffect = transform.Find("DashEffectLeft").GetComponent<ParticleSystem>();
+        rightDashEffect = transform.Find("DashEffectRight").GetComponent<ParticleSystem>();
 
         myRigid.gravityScale = gravityScale;
     }
@@ -123,12 +127,18 @@ public class PlayerController : MonoBehaviour
             isDash = true;
             myRigid.gravityScale = 0;
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
-            myAudioSource.PlayOneShot(dashVoice);
+            if (dashDirection.x > 0)
+                leftDashEffect.Play();
+            else
+                rightDashEffect.Play();
+                myAudioSource.PlayOneShot(dashVoice);
             StartCoroutine(DashReset());
         }
 
         if(isDash)
         {
+            if ((dashDirection.x > 0.01f && isRightWallTouch) || dashDirection.x < -0.01f && isLeftWallTouch)
+                return;
             transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
         }
     }
@@ -151,7 +161,7 @@ public class PlayerController : MonoBehaviour
         {
             myAnim.SetTrigger("JumpDown");
         }
-        else if (!Mathf.Approximately(myRigid.velocity.x,0.0f))
+        else if (myRigid.velocity.x > 0.01 || myRigid.velocity.x < -0.01)
         {
             myAnim.SetTrigger("Run");
         }
@@ -166,6 +176,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         isDash = false;
         myRigid.gravityScale = gravityScale;
+        if (dashDirection.x > 0)
+            leftDashEffect.Stop();
+        else
+            rightDashEffect.Stop();
         yield return new WaitForSeconds(dashCoolTime);
         dashOk = true;
     }
