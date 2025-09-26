@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     public float dashTime;
     [Header("プレイヤーのダッシュのクールタイム")]
     public float dashCoolTime;
+    [Header("プレイヤーのジャンプしたときの声")]
+    public AudioClip jumpVoice;
+    [Header("プレイヤーのダッシュしたときの声")]
+    public AudioClip dashVoice;
 
     [HideInInspector]
     public int coinCount = 0;
@@ -43,23 +47,25 @@ public class PlayerController : MonoBehaviour
 
     Animator myAnim;
     SpriteRenderer mySpriteRenderer;
+    AudioSource myAudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        //コンポーネント取得
         myRigid = GetComponent<Rigidbody2D>();       
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(myRigid.velocity);
-        Move();
-        Jump();
-        Dash();
-        Anim();
+        Move();//移動処理
+        Jump();//ジャンプ処理
+        Dash();//ダッシュ処理
+        Anim();//アニメーション処理
     }
 
     void Move()
@@ -87,16 +93,19 @@ public class PlayerController : MonoBehaviour
             if (isGround == true)
             {
                 myRigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Force);
+                myAudioSource.PlayOneShot(jumpVoice);
             }
             else if(isRightWallTouch == true)
             {
                 myRigid.velocity = Vector3.zero;
                 myRigid.AddForce(rightWallJumpDirection * wallJumpPower, ForceMode2D.Force);
+                myAudioSource.PlayOneShot(jumpVoice);
             }
             else if(isLeftWallTouch == true)
             {
                 myRigid.velocity = Vector3.zero;
                 myRigid.AddForce(leftWallJumpDirection * wallJumpPower, ForceMode2D.Force);
+                myAudioSource.PlayOneShot(jumpVoice);
             }
         }
     }
@@ -109,6 +118,7 @@ public class PlayerController : MonoBehaviour
             dashOk = false;
             isDash = true;
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
+            myAudioSource.PlayOneShot(dashVoice);
             StartCoroutine(DashReset());
         }
 
@@ -119,7 +129,14 @@ public class PlayerController : MonoBehaviour
     }
     void Anim()
     {
-        mySpriteRenderer.flipX = myRigid.velocity.x < 0;
+        if(myRigid.velocity.x > 0)
+        {
+            mySpriteRenderer.flipX = false;
+        }
+        else if(myRigid.velocity.x < 0)
+        {
+            mySpriteRenderer.flipX = true;
+        }
 
         if (myRigid.velocity.y > 0)
         {
