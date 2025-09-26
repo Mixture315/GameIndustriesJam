@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public float dashCoolTime;
 
     [HideInInspector]
+    public int coinCount = 0;
+    [HideInInspector]
     public bool isGround = false;
     [HideInInspector]
     public bool isRightWallTouch;
@@ -28,10 +30,12 @@ public class PlayerController : MonoBehaviour
 
     bool isDash = false;
     bool dashOk = true;
+
     [Header("プレイヤーの右壁ジャンプの方向")]
     public Vector2 rightWallJumpDirection;
     [Header("プレイヤーの左壁ジャンプの方向")]
     public Vector2 leftWallJumpDirection;
+
     Vector2 dashDirection;
     Rigidbody2D myRigid;
 

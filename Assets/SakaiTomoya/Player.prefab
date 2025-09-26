@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 1037693978256394555}
   - component: {fileID: 3071968759399181319}
   - component: {fileID: 3621267694564251050}
+  - component: {fileID: 5714599706581585163}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -609,6 +610,7 @@ MonoBehaviour:
   dashSpeed: 20
   dashTime: 0.12
   dashCoolTime: 3
+  coinCount: 0
   isGround: 0
   isRightWallTouch: 0
   isLeftWallTouch: 0
@@ -676,3 +678,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &5714599706581585163
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9126107924391824228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21cc3567c7854bf4690c86e1f6ef456f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
