@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpVoice;
     [Header("プレイヤーのダッシュしたときの声")]
     public AudioClip dashVoice;
+    [Header("プレイヤーのグラビティスケール")]
+    public float gravityScale;
 
     [HideInInspector]
     public int coinCount = 0;
@@ -57,6 +59,8 @@ public class PlayerController : MonoBehaviour
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAudioSource = GetComponent<AudioSource>();
+
+        myRigid.gravityScale = gravityScale;
     }
 
     // Update is called once per frame
@@ -117,6 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             dashOk = false;
             isDash = true;
+            myRigid.gravityScale = 0;
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
             myAudioSource.PlayOneShot(dashVoice);
             StartCoroutine(DashReset());
@@ -160,6 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(dashTime);
         isDash = false;
+        myRigid.gravityScale = gravityScale;
         yield return new WaitForSeconds(dashCoolTime);
         dashOk = true;
     }
