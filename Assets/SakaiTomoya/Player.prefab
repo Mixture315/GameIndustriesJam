@@ -606,6 +606,9 @@ MonoBehaviour:
   jumpPower: 500
   wallJumpPower: 600
   maxHorizontalVelocity: 13
+  dashSpeed: 20
+  dashTime: 0.12
+  dashCoolTime: 3
   isGround: 0
   isRightWallTouch: 0
   isLeftWallTouch: 0
@@ -671,5 +674,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
