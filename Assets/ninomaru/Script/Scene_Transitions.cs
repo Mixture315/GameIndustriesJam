@@ -15,7 +15,6 @@ public class Scene_Transitions : Singleton<Scene_Transitions>
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
     }
     public void OnClick()
     {

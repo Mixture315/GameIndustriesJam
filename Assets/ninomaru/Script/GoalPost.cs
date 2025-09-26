@@ -6,13 +6,11 @@ using UnityEngine;
 public class GoalPost : MonoBehaviour
 {
     [SerializeField]
-    public Texture2D maskTexture;
-    [SerializeField]
-    public int next = 0;
+    public Canvas canvas;
 
     void Start()
     {
-        
+        canvas = Instantiate(canvas);
     }
 
     void Update()
@@ -27,14 +25,7 @@ public class GoalPost : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var mask = new ImageMaskTransition()
-        {
-            maskTexture = maskTexture,
-            backgroundColor = Color.yellow,
-            nextScene = next
-        };
-        TransitionKit.instance.transitionWithDelegate(mask);
-
+        canvas.gameObject.SetActive(true);
     }
 
 }
