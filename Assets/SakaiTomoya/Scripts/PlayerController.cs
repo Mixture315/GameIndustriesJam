@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip dashVoice;
     [Header("プレイヤーのグラビティスケール")]
     public float gravityScale;
+    [Header("コインを取るたびに水平方向の最大速度に乗算される値")]
+    public float coinGetAcceleration;
 
     [HideInInspector]
     public int coinCount = 0;
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
     bool isDash = false;
     bool dashOk = true;
+
+    float maxHorizontalVelocityMag = 1.0f;
 
     [Header("プレイヤーの右壁ジャンプの方向")]
     public Vector2 rightWallJumpDirection;
@@ -53,7 +58,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer mySpriteRenderer;
     AudioSource myAudioSource;
 
-    //List<Vector2> ghostPoses;
+    List<Vector2> ghostPoses;
+    List<Vector2> playerPoses;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +73,7 @@ public class PlayerController : MonoBehaviour
         rightDashEffect = transform.Find("DashEffectRight").GetComponent<ParticleSystem>();
 
         myRigid.gravityScale = gravityScale;
-        ghostPoses = new List<Vector2>();
+        playerPoses = new List<Vector2>();
     }
 
     // Update is called once per frame
@@ -82,6 +88,9 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        maxHorizontalVelocityMag = 1 + coinCount * coinGetAcceleration;
+        maxHorizontalVelocity *= maxHorizontalVelocityMag;
+       
         if (isDash == false)
         {
             float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
@@ -184,16 +193,16 @@ public class PlayerController : MonoBehaviour
             myAnim.SetTrigger("Wait");
         }
     }
-    /*
+   
     void GhostPosCheck()
     {
-        ghostPoses.Add(transform.position);
+        playerPoses.Add(transform.position);
     }
     private void OnApplicationQuit()
     {
-        PlayerPrefs.set
+        for (int i = 0; i < playerPoses.Count; i++)
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + i + "X", playerPoses[i].x);
     }
-    */
 
     IEnumerator DashReset()
     {
