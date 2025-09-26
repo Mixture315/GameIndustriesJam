@@ -70,7 +70,16 @@ public class PlayerController : MonoBehaviour
         Jump();//ジャンプ処理
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
+
+        Debug.Log(myRigid.velocity.x);
+
     }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
 
     void Move()
     {
@@ -151,7 +160,8 @@ public class PlayerController : MonoBehaviour
         {
             myAnim.SetTrigger("JumpDown");
         }
-        else if (!Mathf.Approximately(myRigid.velocity.x,0.0f))
+        //else if (!Mathf.Approximately(myRigid.velocity.x,0))
+        else if (Mathf.FloorToInt(myRigid.velocity.x) != 0)
         {
             myAnim.SetTrigger("Run");
         }
