@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionGear : MonoBehaviour
+public class Gear : MonoBehaviour
 {
-    // 判定対象をインスペクターで指定できるようにする
+    // 衝突判定の対象
     public GameObject target;
     // ワープ位置
     public Vector2 playerTeleportPos = new Vector2(0, 0);
