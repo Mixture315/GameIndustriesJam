@@ -10276,6 +10276,7 @@ MonoBehaviour:
   jumpVoice: {fileID: 8300000, guid: bb71cdbb1442cc14c90da9707de0ca2b, type: 3}
   dashVoice: {fileID: 8300000, guid: de2f193246df7bf428e09398d6f4cdab, type: 3}
   gravityScale: 8
+  coinGetAcceleration: 0.1
   coinCount: 0
   isGround: 0
   isRightWallTouch: 0

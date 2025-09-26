@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     bool dashOk = true;
 
     float maxHorizontalVelocityMag = 1.0f;
+    float startMaxHorizontalVelocity;
 
     [Header("プレイヤーの右壁ジャンプの方向")]
     public Vector2 rightWallJumpDirection;
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer mySpriteRenderer;
     AudioSource myAudioSource;
 
-    List<Vector2> ghostPoses;
     List<Vector2> playerPoses;
 
     // Start is called before the first frame update
@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
         myRigid.gravityScale = gravityScale;
         playerPoses = new List<Vector2>();
+        startMaxHorizontalVelocity = maxHorizontalVelocityMag;
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         maxHorizontalVelocityMag = 1 + coinCount * coinGetAcceleration;
-        maxHorizontalVelocity *= maxHorizontalVelocityMag;
+        maxHorizontalVelocity = startMaxHorizontalVelocity * maxHorizontalVelocityMag;
        
         if (isDash == false)
         {
@@ -201,7 +202,10 @@ public class PlayerController : MonoBehaviour
     private void OnApplicationQuit()
     {
         for (int i = 0; i < playerPoses.Count; i++)
+        {
             PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + i + "X", playerPoses[i].x);
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + i + "Y", playerPoses[i].y);
+        }
     }
 
     IEnumerator DashReset()
