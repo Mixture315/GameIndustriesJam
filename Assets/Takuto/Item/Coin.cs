@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [Header("衝突相手")]
-    // 衝突判定の対象
-    public GameObject target;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +16,13 @@ public class Coin : MonoBehaviour
         
     }
 
-    // 当たり判定表示
+    // 当たり判定
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == target)
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
-            Debug.Log("指定キャラと接触！ 相手は: " + other.gameObject.name);
+            player.coinCount++;
 
             Destroy(gameObject);
         }
