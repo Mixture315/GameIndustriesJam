@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("プレイヤーの加速スピード")]
     public float speed;
+    [Header("プレイヤーのジャンプ力")]
     public float jumpPower;
+    [Header("プレイヤーの壁ジャンプ力")]
     public float wallJumpPower;
+    [Header("プレイヤーの水平方向の最大速度")]
     public float maxHorizontalVelocity;
+    [Header("プレイヤーのダッシュ中のスピード")]
     public float dashSpeed;
+    [Header("プレイヤーのダッシュの時間")]
     public float dashTime;
+    [Header("プレイヤーのダッシュのクールタイム")]
+    public float dashCoolTime;
+
+    [HideInInspector]
     public bool isGround = false;
+    [HideInInspector]
     public bool isRightWallTouch;
+    [HideInInspector]
     public bool isLeftWallTouch;
+
     bool isDash = false;
+    bool dashOk = true;
+    [Header("プレイヤーの右壁ジャンプの方向")]
     public Vector2 rightWallJumpDirection;
+    [Header("プレイヤーの左壁ジャンプの方向")]
     public Vector2 leftWallJumpDirection;
     Vector2 dashDirection;
     Rigidbody2D myRigid;
@@ -75,11 +91,12 @@ public class PlayerController : MonoBehaviour
     void Dash()
     {
         if (myRigid.velocity.x == 0) return;
-        if(Input.GetKeyDown(KeyCode.LeftShift) && isDash == false)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && isDash == false && dashOk == true)
         {
+            dashOk = false;
             isDash = true;
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
-            Invoke("DashFinish", dashTime);
+            StartCoroutine(DashReset());
         }
 
         if(isDash)
@@ -88,8 +105,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void DashFinish()
+    IEnumerator DashReset()
     {
+        yield return new WaitForSeconds(dashTime);
         isDash = false;
+        yield return new WaitForSeconds(dashCoolTime);
+        dashOk = true;
     }
 }
