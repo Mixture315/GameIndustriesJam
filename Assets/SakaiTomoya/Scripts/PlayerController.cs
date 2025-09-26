@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpVoice;
     [Header("プレイヤーのダッシュしたときの声")]
     public AudioClip dashVoice;
+    [Header("プレイヤーのグラビティスケール")]
+    public float gravityScale;
+    [Header("コインを取るたびに水平方向の最大速度に乗算される値")]
+    public float coinGetAcceleration;
 
     [HideInInspector]
     public int coinCount = 0;
@@ -35,6 +40,8 @@ public class PlayerController : MonoBehaviour
     bool isDash = false;
     bool dashOk = true;
 
+    float maxHorizontalVelocityMag = 1.0f;
+
     [Header("プレイヤーの右壁ジャンプの方向")]
     public Vector2 rightWallJumpDirection;
     [Header("プレイヤーの左壁ジャンプの方向")]
@@ -45,9 +52,14 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D myRigid;
 
+    ParticleSystem leftDashEffect;
+    ParticleSystem rightDashEffect;
     Animator myAnim;
     SpriteRenderer mySpriteRenderer;
     AudioSource myAudioSource;
+
+    List<Vector2> ghostPoses;
+    List<Vector2> playerPoses;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +69,11 @@ public class PlayerController : MonoBehaviour
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAudioSource = GetComponent<AudioSource>();
+        leftDashEffect = transform.Find("DashEffectLeft").GetComponent<ParticleSystem>();
+        rightDashEffect = transform.Find("DashEffectRight").GetComponent<ParticleSystem>();
+
+        myRigid.gravityScale = gravityScale;
+        playerPoses = new List<Vector2>();
     }
 
     // Update is called once per frame
@@ -66,10 +83,14 @@ public class PlayerController : MonoBehaviour
         Jump();//ジャンプ処理
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
+        GhostPosCheck();//プレイヤーのポジションの記録
     }
 
     void Move()
     {
+        maxHorizontalVelocityMag = 1 + coinCount * coinGetAcceleration;
+        maxHorizontalVelocity *= maxHorizontalVelocityMag;
+       
         if (isDash == false)
         {
             float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
@@ -117,14 +138,31 @@ public class PlayerController : MonoBehaviour
         {
             dashOk = false;
             isDash = true;
+
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
+
+            if (dashDirection.x > 0)
+                leftDashEffect.Play();
+            else
+                rightDashEffect.Play();
+
             myAudioSource.PlayOneShot(dashVoice);
+
+            Vector2 vel = myRigid.velocity;
+            vel.y = 0;
+            myRigid.velocity = vel;
+            myRigid.gravityScale = 0;
+
             StartCoroutine(DashReset());
         }
 
         if(isDash)
         {
-            transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
+            if ((dashDirection.x > 0.01f && isRightWallTouch) || dashDirection.x < -0.01f && isLeftWallTouch)
+                return;
+            Vector2 vel = myRigid.velocity;
+            vel.x = dashDirection.x * dashSpeed;
+            myRigid.velocity = vel;
         }
     }
     void Anim()
@@ -146,7 +184,7 @@ public class PlayerController : MonoBehaviour
         {
             myAnim.SetTrigger("JumpDown");
         }
-        else if (!Mathf.Approximately(myRigid.velocity.x,0.0f))
+        else if (myRigid.velocity.x > 0.01 || myRigid.velocity.x < -0.01)
         {
             myAnim.SetTrigger("Run");
         }
@@ -155,11 +193,29 @@ public class PlayerController : MonoBehaviour
             myAnim.SetTrigger("Wait");
         }
     }
+   
+    void GhostPosCheck()
+    {
+        playerPoses.Add(transform.position);
+    }
+    private void OnApplicationQuit()
+    {
+        for (int i = 0; i < playerPoses.Count; i++)
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + i + "X", playerPoses[i].x);
+    }
 
     IEnumerator DashReset()
     {
         yield return new WaitForSeconds(dashTime);
+        myRigid.velocity = Vector2.zero;
+        if (dashDirection.x > 0)
+            leftDashEffect.Stop();
+        else
+            rightDashEffect.Stop();
+        yield return new WaitForSeconds(0.1f);
         isDash = false;
+        myRigid.gravityScale = gravityScale;
+       
         yield return new WaitForSeconds(dashCoolTime);
         dashOk = true;
     }
