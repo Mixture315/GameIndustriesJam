@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         myRigid.gravityScale = gravityScale;
         playerPoses = new List<Vector2>();
-        startMaxHorizontalVelocity = maxHorizontalVelocityMag;
+        startMaxHorizontalVelocity = maxHorizontalVelocity;
     }
 
     // Update is called once per frame
