@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer mySpriteRenderer;
     AudioSource myAudioSource;
 
+    //List<Vector2> ghostPoses;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         rightDashEffect = transform.Find("DashEffectRight").GetComponent<ParticleSystem>();
 
         myRigid.gravityScale = gravityScale;
+        ghostPoses = new List<Vector2>();
     }
 
     // Update is called once per frame
@@ -74,6 +77,7 @@ public class PlayerController : MonoBehaviour
         Jump();//ジャンプ処理
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
+        GhostPosCheck();//プレイヤーのポジションの記録
     }
 
     void Move()
@@ -96,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isDash == false)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGround == true)
             {
@@ -147,7 +151,9 @@ public class PlayerController : MonoBehaviour
         {
             if ((dashDirection.x > 0.01f && isRightWallTouch) || dashDirection.x < -0.01f && isLeftWallTouch)
                 return;
-            transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
+            Vector2 vel = myRigid.velocity;
+            vel.x = dashDirection.x * dashSpeed;
+            myRigid.velocity = vel;
         }
     }
     void Anim()
@@ -178,10 +184,21 @@ public class PlayerController : MonoBehaviour
             myAnim.SetTrigger("Wait");
         }
     }
+    /*
+    void GhostPosCheck()
+    {
+        ghostPoses.Add(transform.position);
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.set
+    }
+    */
 
     IEnumerator DashReset()
     {
         yield return new WaitForSeconds(dashTime);
+        myRigid.velocity = Vector2.zero;
         if (dashDirection.x > 0)
             leftDashEffect.Stop();
         else
