@@ -10,6 +10,7 @@ public class GoalPost : MonoBehaviour
     [SerializeField]
     public int next = 0;
 
+    public int next;
     void Start()
     {
         
