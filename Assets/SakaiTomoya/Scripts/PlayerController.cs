@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isDash == false)
         {
             if (isGround == true)
             {
@@ -125,13 +125,21 @@ public class PlayerController : MonoBehaviour
         {
             dashOk = false;
             isDash = true;
-            myRigid.gravityScale = 0;
+
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
+
             if (dashDirection.x > 0)
                 leftDashEffect.Play();
             else
                 rightDashEffect.Play();
-                myAudioSource.PlayOneShot(dashVoice);
+
+            myAudioSource.PlayOneShot(dashVoice);
+
+            Vector2 vel = myRigid.velocity;
+            vel.y = 0;
+            myRigid.velocity = vel;
+            myRigid.gravityScale = 0;
+
             StartCoroutine(DashReset());
         }
 
@@ -174,12 +182,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator DashReset()
     {
         yield return new WaitForSeconds(dashTime);
-        isDash = false;
-        myRigid.gravityScale = gravityScale;
         if (dashDirection.x > 0)
             leftDashEffect.Stop();
         else
             rightDashEffect.Stop();
+        yield return new WaitForSeconds(0.1f);
+        isDash = false;
+        myRigid.gravityScale = gravityScale;
+       
         yield return new WaitForSeconds(dashCoolTime);
         dashOk = true;
     }
