@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2799421028086421061}
   - component: {fileID: 2002312865791953862}
+  - component: {fileID: 8952657160276270681}
+  - component: {fileID: 265284705212272121}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -77,6 +79,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1889019, y: 0.404091}
   m_EdgeRadius: 0
+--- !u!114 &8952657160276270681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43074741408442783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01e3940426d9ed4bb0db2334f341238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &265284705212272121
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43074741408442783}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1082552954396188702
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +273,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8472091671258560627}
   - component: {fileID: 2488679304502170685}
+  - component: {fileID: 2838471568667814265}
+  - component: {fileID: 2556899058913854966}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -299,6 +342,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1889019, y: 0.404091}
   m_EdgeRadius: 0
+--- !u!114 &2838471568667814265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350194339724012740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01e3940426d9ed4bb0db2334f341238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &2556899058913854966
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350194339724012740}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &5762094063909930343
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +392,7 @@ GameObject:
   - component: {fileID: 3692670686494688118}
   - component: {fileID: 5337831988409433073}
   - component: {fileID: 6353230553165206982}
+  - component: {fileID: 5393179363412145392}
   m_Layer: 0
   m_Name: Foot
   m_TagString: Untagged
@@ -389,6 +472,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7817b954891525043b43d4ba44712cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &5393179363412145392
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762094063909930343}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &9126107924391824228
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,14 +602,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65dcb7bba19c34741914aaec8122209f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpPower: 10
+  speed: 60
+  jumpPower: 500
+  wallJumpPower: 600
+  maxHorizontalVelocity: 13
   isGround: 0
   isRightWallTouch: 0
   isLeftWallTouch: 0
-  rightWallJumpDirection: {x: 0, y: 0}
-  leftWallJumpDirection: {x: 0, y: 0}
-  wallJumpPower: 0
+  rightWallJumpDirection: {x: -0.6, y: 1}
+  leftWallJumpDirection: {x: 0.6, y: 1}
 --- !u!58 &3071968759399181319
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -561,4 +672,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

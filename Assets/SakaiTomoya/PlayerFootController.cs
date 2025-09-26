@@ -19,7 +19,7 @@ public class PlayerFootController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.isTrigger == false)
+        if(collision.isTrigger == false && collision.gameObject != playerController.gameObject)
         {
             playerController.isGround = true;
         }
@@ -27,7 +27,7 @@ public class PlayerFootController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.isTrigger == false)
+        if (collision.isTrigger == false && collision.gameObject != playerController.gameObject)
         {
             playerController.isGround = false;
         }

@@ -4,5 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+<<<<<<< HEAD
+  m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Takuto/Game.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+>>>>>>> origin/sakai
+>>>>>>> origin/二ノ丸
   m_configObjects: {}
