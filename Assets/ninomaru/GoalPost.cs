@@ -8,6 +8,7 @@ public class GoalPost : MonoBehaviour
     [SerializeField]
     public Texture2D maskTexture;
 
+    public int next;
     void Start()
     {
         
