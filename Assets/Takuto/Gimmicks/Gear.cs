@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionGear : MonoBehaviour
+public class Gear : MonoBehaviour
 {
-    // 判定対象をインスペクターで指定できるようにする
-    public GameObject target;
+    [Header("プレイヤーのワープ位置")]
     // ワープ位置
     public Vector2 playerTeleportPos = new Vector2(0, 0);
 
@@ -23,12 +22,16 @@ public class CollisionGear : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == target)
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
             Debug.Log("指定キャラと接触！ 相手は: " + other.gameObject.name);
 
-            // 位置を移動（Vector2 から Vector3 へ変換）
-            other.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
+            // プレイヤーの加速度を0にする
+            player.myRigid.velocity = Vector3.zero;
+
+            // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
+            player.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
         }
     }
 
