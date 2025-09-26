@@ -113,13 +113,13 @@ public class Element_Blue : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController pc = other.GetComponent<PlayerController>();
-        if (player != null)
+        if (pc != null)
         {
             // プレイヤーの加速度を0にする
-            player.myRigid.velocity = Vector3.zero;
+            pc.myRigid.velocity = Vector3.zero;
 
             // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
-            player.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
+            pc.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
         }
     }
 }
