@@ -7,14 +7,25 @@ public class GoalPost : MonoBehaviour
 {
     [SerializeField]
     public Texture2D maskTexture;
+    [SerializeField]
+    public int next = 0;
 
-    public int next;
     void Start()
     {
         
     }
 
     void Update()
+    {
+
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         var mask = new ImageMaskTransition()
         {
@@ -25,4 +36,5 @@ public class GoalPost : MonoBehaviour
         TransitionKit.instance.transitionWithDelegate(mask);
 
     }
+
 }
