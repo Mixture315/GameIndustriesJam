@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (isDash == false)
         {
             float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            if ((x > 0 && isRightWallTouch) || x < 0 && isLeftWallTouch)
+            if ((x > 0.01f && isRightWallTouch) || x < -0.01 && isLeftWallTouch)
                 return;
 
             Vector3 vel = myRigid.velocity;
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if (myRigid.velocity.x == 0) return;
+        if (Mathf.Approximately(myRigid.velocity.x,0.0f)) return;
         if(Input.GetKeyDown(KeyCode.LeftShift) && isDash == false && dashOk == true)
         {
             dashOk = false;
@@ -129,24 +129,24 @@ public class PlayerController : MonoBehaviour
     }
     void Anim()
     {
-        if(myRigid.velocity.x > 0)
+        if(myRigid.velocity.x > 0.01f)
         {
             mySpriteRenderer.flipX = false;
         }
-        else if(myRigid.velocity.x < 0)
+        else if(myRigid.velocity.x < -0.01f)
         {
             mySpriteRenderer.flipX = true;
         }
 
-        if (myRigid.velocity.y > 0)
+        if (myRigid.velocity.y > 0.01f)
         {
             myAnim.SetTrigger("JumpUp");
         }
-        else if (myRigid.velocity.y < 0)
+        else if (myRigid.velocity.y < -0.01f)
         {
             myAnim.SetTrigger("JumpDown");
         }
-        else if (myRigid.velocity.x != 0)
+        else if (!Mathf.Approximately(myRigid.velocity.x,0.0f))
         {
             myAnim.SetTrigger("Run");
         }
