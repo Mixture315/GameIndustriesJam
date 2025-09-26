@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D myRigid;
 
+    ParticleSystem leftDashEffect;
+    ParticleSystem rightDashEffect;
     Animator myAnim;
     SpriteRenderer mySpriteRenderer;
     AudioSource myAudioSource;
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAudioSource = GetComponent<AudioSource>();
+        leftDashEffect = transform.Find("DashEffectLeft").GetComponent<ParticleSystem>();
+        rightDashEffect = transform.Find("DashEffectRight").GetComponent<ParticleSystem>();
 
         myRigid.gravityScale = gravityScale;
     }
@@ -70,16 +74,7 @@ public class PlayerController : MonoBehaviour
         Jump();//ジャンプ処理
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
-
-        Debug.Log(myRigid.velocity.x);
-
     }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
 
     void Move()
     {
@@ -101,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isDash == false)
         {
             if (isGround == true)
             {
@@ -130,14 +125,28 @@ public class PlayerController : MonoBehaviour
         {
             dashOk = false;
             isDash = true;
-            myRigid.gravityScale = 0;
+
             dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
+
+            if (dashDirection.x > 0)
+                leftDashEffect.Play();
+            else
+                rightDashEffect.Play();
+
             myAudioSource.PlayOneShot(dashVoice);
+
+            Vector2 vel = myRigid.velocity;
+            vel.y = 0;
+            myRigid.velocity = vel;
+            myRigid.gravityScale = 0;
+
             StartCoroutine(DashReset());
         }
 
         if(isDash)
         {
+            if ((dashDirection.x > 0.01f && isRightWallTouch) || dashDirection.x < -0.01f && isLeftWallTouch)
+                return;
             transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
         }
     }
@@ -160,8 +169,7 @@ public class PlayerController : MonoBehaviour
         {
             myAnim.SetTrigger("JumpDown");
         }
-        //else if (!Mathf.Approximately(myRigid.velocity.x,0))
-        else if (Mathf.FloorToInt(myRigid.velocity.x) != 0)
+        else if (myRigid.velocity.x > 0.01 || myRigid.velocity.x < -0.01)
         {
             myAnim.SetTrigger("Run");
         }
@@ -174,8 +182,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator DashReset()
     {
         yield return new WaitForSeconds(dashTime);
+        if (dashDirection.x > 0)
+            leftDashEffect.Stop();
+        else
+            rightDashEffect.Stop();
+        yield return new WaitForSeconds(0.1f);
         isDash = false;
         myRigid.gravityScale = gravityScale;
+       
         yield return new WaitForSeconds(dashCoolTime);
         dashOk = true;
     }
