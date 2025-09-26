@@ -37,20 +37,29 @@ public class PlayerController : MonoBehaviour
     public Vector2 leftWallJumpDirection;
 
     Vector2 dashDirection;
-    Rigidbody2D myRigid;
+
+    [HideInInspector]
+    public Rigidbody2D myRigid;
+
+    Animator myAnim;
+    SpriteRenderer mySpriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigid = GetComponent<Rigidbody2D>();       
+        myAnim = GetComponent<Animator>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(myRigid.velocity);
         Move();
         Jump();
         Dash();
+        Anim();
     }
 
     void Move()
@@ -106,6 +115,27 @@ public class PlayerController : MonoBehaviour
         if(isDash)
         {
             transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
+        }
+    }
+    void Anim()
+    {
+        mySpriteRenderer.flipX = myRigid.velocity.x < 0;
+
+        if (myRigid.velocity.y > 0)
+        {
+            myAnim.SetTrigger("JumpUp");
+        }
+        else if (myRigid.velocity.y < 0)
+        {
+            myAnim.SetTrigger("JumpDown");
+        }
+        else if (myRigid.velocity.x != 0)
+        {
+            myAnim.SetTrigger("Run");
+        }
+        else
+        {
+            myAnim.SetTrigger("Wait");
         }
     }
 
