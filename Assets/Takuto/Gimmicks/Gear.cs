@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
+    [Header("衝突相手")]
     // 衝突判定の対象
     public GameObject target;
+    [Header("衝突相手のワープ位置")]
     // ワープ位置
     public Vector2 playerTeleportPos = new Vector2(0, 0);
 

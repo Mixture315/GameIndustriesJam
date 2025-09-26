@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [Header("Õ“Ë‘Šè")]
     // Õ“Ë”»’è‚Ì‘ÎÛ
     public GameObject target;
 
