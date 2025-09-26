@@ -26,7 +26,7 @@ public class Coin : MonoBehaviour
         {
             Debug.Log("w’èƒLƒƒƒ‰‚ÆÚGI ‘Šè‚Í: " + other.gameObject.name);
 
-            
+            Destroy(gameObject);
         }
     }
 
