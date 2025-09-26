@@ -429,6 +429,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
+      propertyPath: dashTime
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
+      propertyPath: dashSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
+      propertyPath: dashCoolTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
+      propertyPath: gravityScale
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7887684025237323405, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
