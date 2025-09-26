@@ -16,11 +16,11 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // スペースキーが押されたらシェイク開始
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(Shake(duration, magnitude));
-        }
+        //// スペースキーが押されたらシェイク開始
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    StartCoroutine(Shake(duration, magnitude));
+        //}
     }
 
     private IEnumerator Shake(float duration, float magnitude)
