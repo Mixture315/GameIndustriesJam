@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour
     public float jumpPower;
     public float wallJumpPower;
     public float maxHorizontalVelocity;
-    public float dashPower;
+    public float dashSpeed;
+    public float dashTime;
     public bool isGround = false;
     public bool isRightWallTouch;
     public bool isLeftWallTouch;
+    bool isDash = false;
     public Vector2 rightWallJumpDirection;
     public Vector2 leftWallJumpDirection;
+    Vector2 dashDirection;
     Rigidbody2D myRigid;
 
     // Start is called before the first frame update
@@ -27,25 +30,25 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
-        //Dash();
-        Debug.Log(myRigid.velocity);
+        Dash();
     }
 
     void Move()
     {
-        float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        if((x > 0 && isRightWallTouch) || x < 0 && isLeftWallTouch)
+        if (isDash == false)
         {
-            Debug.Log("aaa");
-            return;
+            float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            if ((x > 0 && isRightWallTouch) || x < 0 && isLeftWallTouch)
+                return;
+
+            Vector3 vel = myRigid.velocity;
+            vel.x += x;
+            if (Mathf.Abs(vel.x) > maxHorizontalVelocity)
+            {
+                vel.x = maxHorizontalVelocity * Mathf.Sign(vel.x);
+            }
+            myRigid.velocity = vel;
         }
-        Vector3 vel = myRigid.velocity;
-        vel.x += x;
-        if(Mathf.Abs(vel.x) > maxHorizontalVelocity)
-        {
-            vel.x = maxHorizontalVelocity * Mathf.Sign(vel.x);
-        }
-        myRigid.velocity = vel;
     }
 
     void Jump()
@@ -54,18 +57,15 @@ public class PlayerController : MonoBehaviour
         {
             if (isGround == true)
             {
-                Debug.Log("bbb");
                 myRigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Force);
             }
             else if(isRightWallTouch == true)
             {
-                Debug.Log("ccc");
                 myRigid.velocity = Vector3.zero;
                 myRigid.AddForce(rightWallJumpDirection * wallJumpPower, ForceMode2D.Force);
             }
             else if(isLeftWallTouch == true)
             {
-                Debug.Log("ddd");
                 myRigid.velocity = Vector3.zero;
                 myRigid.AddForce(leftWallJumpDirection * wallJumpPower, ForceMode2D.Force);
             }
@@ -74,11 +74,22 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (myRigid.velocity.x == 0) return;
+        if(Input.GetKeyDown(KeyCode.LeftShift) && isDash == false)
         {
-            Vector3 vel = myRigid.velocity;
-            vel.x = Mathf.Sign(vel.x) * dashPower;
-            myRigid.velocity = vel;
+            isDash = true;
+            dashDirection = new Vector2(Mathf.Sign(myRigid.velocity.x), 0);
+            Invoke("DashFinish", dashTime);
         }
+
+        if(isDash)
+        {
+            transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
+        }
+    }
+
+    void DashFinish()
+    {
+        isDash = false;
     }
 }
