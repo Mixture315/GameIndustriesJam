@@ -66,7 +66,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.48831427, y: -0.033156395}
+  m_Offset: {x: 0.5216495, y: -0.033156395}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -77,7 +77,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1889019, y: 1.8850775}
+  m_Size: {x: 0.25557214, y: 1.8850775}
   m_EdgeRadius: 0
 --- !u!114 &8952657160276270681
 MonoBehaviour:
@@ -184,7 +184,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.48831427, y: -0.033156395}
+  m_Offset: {x: 0.4635933, y: -0.033156395}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -195,7 +195,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1889019, y: 1.8850775}
+  m_Size: {x: 0.23834386, y: 1.8850775}
   m_EdgeRadius: 0
 --- !u!114 &3832293555315388993
 MonoBehaviour:
@@ -10266,16 +10266,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65dcb7bba19c34741914aaec8122209f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 160
+  speed: 180
   jumpPower: 1200
   wallJumpPower: 1200
   maxHorizontalVelocity: 40
-  dashSpeed: 35
+  dashSpeed: 60
   dashTime: 0.25
   dashCoolTime: 1
   jumpVoice: {fileID: 8300000, guid: bb71cdbb1442cc14c90da9707de0ca2b, type: 3}
   dashVoice: {fileID: 8300000, guid: de2f193246df7bf428e09398d6f4cdab, type: 3}
   gravityScale: 8
+  coinGetAcceleration: 0.1
   coinCount: 0
   isGround: 0
   isRightWallTouch: 0
