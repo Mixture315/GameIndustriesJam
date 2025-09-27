@@ -19343,6 +19343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoalObjct
       objectReference: {fileID: 0}
+    - target: {fileID: 3570222210922655183, guid: 564209b6bba56ec4cb118c14e1fd48b1, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 3857064464297467589}
     - target: {fileID: 5195283052609415664, guid: 564209b6bba56ec4cb118c14e1fd48b1, type: 3}
       propertyPath: m_SortingOrder
       value: -5
@@ -21091,11 +21095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1754612615311237440, guid: 301394788bf10a444a290a52c32a27a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12274316
+      value: -0.12765664
       objectReference: {fileID: 0}
     - target: {fileID: 1754612615311237440, guid: 301394788bf10a444a290a52c32a27a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.81705
+      value: 40.8168
       objectReference: {fileID: 0}
     - target: {fileID: 3912956645875863429, guid: 301394788bf10a444a290a52c32a27a3, type: 3}
       propertyPath: m_Name
@@ -21174,6 +21178,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 301394788bf10a444a290a52c32a27a3, type: 3}
+--- !u!114 &3857064464297467589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3503852825742103463, guid: 301394788bf10a444a290a52c32a27a3, type: 3}
+  m_PrefabInstance: {fileID: 3857064464297467588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445d49bf63d3a5c4d90864672b769f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4187798753159500094
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,9 @@ using TMPro; // これを追加する
 
 public class CoinUi : MonoBehaviour
 {
-    public PlayerController player;  // プレイヤーをインスペクターで指定
+    //public PlayerController player;  // プレイヤーをインスペクターで指定
+    GameObject player;
+    PlayerController playerController;
     public TextMeshProUGUI coinText; // コイン枚数
 
     [Header("アウトラインの太さ")]
@@ -16,6 +18,8 @@ public class CoinUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
         // Outline の有効化
         coinText.fontSharedMaterial.EnableKeyword("OUTLINE_ON");
 
@@ -30,7 +34,7 @@ public class CoinUi : MonoBehaviour
         // プレイヤーのコイン数を UI に反映
         if (player != null && coinText != null)
         {
-            coinText.text = "Coin: " + player.coinCount.ToString();
+            coinText.text = "Coin: " + playerController.coinCount.ToString();
         }
     }
 }
