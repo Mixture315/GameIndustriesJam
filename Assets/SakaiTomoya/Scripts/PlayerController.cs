@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public float gravityScale;
     [Header("コインを取るたびに水平方向の最大速度に乗算される値")]
     public float coinGetAcceleration;
+    [Header("プレイヤーの位置情報記録頻度")]
+    public float positionRecordTime;
 
     [HideInInspector]
     public int coinCount = 0;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     float maxHorizontalVelocityMag = 1.0f;
     float startMaxHorizontalVelocity;
+    float positionRecordTimer = 0.0f;
 
     [Header("プレイヤーの右壁ジャンプの方向")]
     public Vector2 rightWallJumpDirection;
@@ -85,6 +88,11 @@ public class PlayerController : MonoBehaviour
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
         //GhostPosCheck();//プレイヤーのポジションの記録
+    }
+
+    private void FixedUpdate()
+    {
+       
     }
 
     void Move()
@@ -197,7 +205,15 @@ public class PlayerController : MonoBehaviour
    
     void GhostPosCheck()
     {
-        playerPoses.Add(transform.position);
+        if (SceneManager.GetActiveScene().name == "Title")
+            return;
+
+        positionRecordTimer += Time.deltaTime;
+        if (positionRecordTimer > positionRecordTime)
+        {
+            playerPoses.Add(transform.position);
+            positionRecordTimer = 0;
+        }
     }
     private void OnApplicationQuit()
     {

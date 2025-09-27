@@ -6,35 +6,52 @@ using UnityEngine.SceneManagement;
 public class GhostController : MonoBehaviour
 {
     int ghostPosStep = 0;
+    float timer = 0.0f;
+
+    GameObject player;
+    PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
         if (!PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + ghostPosStep + "X"))
             Destroy(gameObject);
+
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 pos = new Vector2(0, 0);
-        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + ghostPosStep + "X"))
+        timer += Time.deltaTime;
+        if (timer > playerController.positionRecordTime)
         {
-            pos.x = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ghostPosStep + "X"); 
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+            Vector2 pos = new Vector2(0, 0);
+            if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + ghostPosStep + "X"))
+            {
+                pos.x = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ghostPosStep + "X");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
 
-        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + ghostPosStep + "Y"))
-        {
-            pos.y = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ghostPosStep + "Y");
+            if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + ghostPosStep + "Y"))
+            {
+                pos.y = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + ghostPosStep + "Y");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            transform.position = pos;
+            ghostPosStep++;
+            timer = 0;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-        transform.position = pos;
-        ghostPosStep++;
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 }

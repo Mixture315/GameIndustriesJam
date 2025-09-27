@@ -487,44 +487,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: speed
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: jumpPower
-      value: 2500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: gravityScale
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: wallJumpPower
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: maxHorizontalVelocity
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: leftWallJumpDirection.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: rightWallJumpDirection.x
-      value: -0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3621267694564251050, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3621267694564251050, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: m_LinearDrag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3621267694564251050, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
-      propertyPath: m_GravityScale
-      value: 20
+      propertyPath: positionRecordTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7887684025237323405, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
       propertyPath: m_LocalPosition.x
