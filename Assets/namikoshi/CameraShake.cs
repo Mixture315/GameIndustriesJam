@@ -17,12 +17,12 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // スペースキーが押されたらシェイク開始
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            var impulseSource = GetComponent<CinemachineImpulseSource>();
-            impulseSource.GenerateImpulse();
-        }
+        //// スペースキーが押されたらシェイク開始
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    var impulseSource = GetComponent<CinemachineImpulseSource>();
+        //    impulseSource.GenerateImpulse();
+        //}
     }
 
     public IEnumerator Shake(float duration, float magnitude)

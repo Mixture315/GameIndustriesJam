@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6304811412879707962}
   - component: {fileID: 5973711649118316262}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,11 +173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6384556698617910178, guid: ff209bc6ede169f4c9018a6689816af5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -266.90085
+      value: -722
       objectReference: {fileID: 0}
     - target: {fileID: 6384556698617910178, guid: ff209bc6ede169f4c9018a6689816af5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 155.28954
+      value: 431
       objectReference: {fileID: 0}
     - target: {fileID: 6384556698617910178, guid: ff209bc6ede169f4c9018a6689816af5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ca209f1ccce2e4d918f385b8816bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1037693978256394555, guid: 2221136131db6e6439e1900c3b883a74, type: 3}
   coinText: {fileID: 7221711269269883481}
   outlineWidth: 0.2
 --- !u!1001 &5466462357802849702
@@ -250,6 +250,14 @@ PrefabInstance:
     - target: {fileID: 886383334309059273, guid: 90678676b9d500546974bd1dfb3921c6, type: 3}
       propertyPath: m_Name
       value: Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266943549785254559, guid: 90678676b9d500546974bd1dfb3921c6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 633
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266943549785254559, guid: 90678676b9d500546974bd1dfb3921c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 408
       objectReference: {fileID: 0}
     - target: {fileID: 5158163234444235775, guid: 90678676b9d500546974bd1dfb3921c6, type: 3}
       propertyPath: m_Pivot.x
