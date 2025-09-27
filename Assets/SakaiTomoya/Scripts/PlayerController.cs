@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isLeftWallTouch;
 
+    int recordPositionStep = 0;
+
     bool isDash = false;
     bool dashOk = true;
 
@@ -143,7 +145,7 @@ public class PlayerController : MonoBehaviour
     void Dash()
     {
         if (Mathf.Approximately(myRigid.velocity.x,0.0f)) return;
-        if(Input.GetKeyDown(KeyCode.LeftShift) && isDash == false && dashOk == true)
+        if(Input.GetKeyDown(KeyCode.KeypadEnter) && isDash == false && dashOk == true)
         {
             dashOk = false;
             isDash = true;
@@ -211,16 +213,10 @@ public class PlayerController : MonoBehaviour
         positionRecordTimer += Time.deltaTime;
         if (positionRecordTimer > positionRecordTime)
         {
-            playerPoses.Add(transform.position);
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + recordPositionStep + "X", transform.position.x);
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + recordPositionStep + "Y", transform.position.y);
             positionRecordTimer = 0;
-        }
-    }
-    private void OnApplicationQuit()
-    {
-        for (int i = 0; i < playerPoses.Count; i++)
-        {
-            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + i + "X", playerPoses[i].x);
-            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + i + "Y", playerPoses[i].y);
+            recordPositionStep++;
         }
     }
 
