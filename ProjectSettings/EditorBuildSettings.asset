@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ninomaru/Scene/title.unity
+    guid: ac5ad6a6cd7c9c54dbba6f0df63e3707
+  - enabled: 1
+    path: Assets/namikoshi/StageFolder/Stage1.unity
+    guid: b9f611cb64a67324bbfefbf8fa65299f
+  - enabled: 1
+    path: Assets/namikoshi/StageFolder/Stage2.unity
+    guid: f0057946db96da947be908972270d8db
+  - enabled: 1
+    path: Assets/namikoshi/StageFolder/Stage3.unity
+    guid: 37ae105d42fb82540a57e4281d35d0db
+  - enabled: 1
+    path: Assets/namikoshi/StageFolder/Stage4.unity
+    guid: ec703ed85de92f8488ac162136140322
+  - enabled: 1
+    path: Assets/namikoshi/StageFolder/Stage5.unity
+    guid: 7eaab31bbb6062c479782721e419f4a5
   m_configObjects: {}
