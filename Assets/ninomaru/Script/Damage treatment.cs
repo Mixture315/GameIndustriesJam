@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Damagetreatment : MonoBehaviour
 {
-    public CameraShake camera;
+    //public CameraShake camera;
     [Header("プレイヤーのワープ位置")]
     // ワープ位置
     public Vector2 playerTeleportPos = new Vector2(0, 0);
@@ -28,9 +28,9 @@ public class Damagetreatment : MonoBehaviour
             Debug.Log("指定キャラと接触！ 相手は: " + other.gameObject.name);
 
 
-            if (camera != null)
-            {
-                StartCoroutine(camera.Shake(0.3f, 0.5f));
+            //if (camera != null)
+            //{
+                //StartCoroutine(camera.Shake(0.3f, 0.5f));
 
                 // プレイヤーの加速度を0にする
                 player.myRigid.velocity = Vector3.zero;
@@ -40,11 +40,11 @@ public class Damagetreatment : MonoBehaviour
                 SpriteRenderer sprite = player.GetComponent<SpriteRenderer>();
                 sprite.enabled = false;
                 player.interval_time = 0.5f;
-            }
-            else
-            {
-                Debug.Log("値がない: ");
-            }
+            //}
+            //else
+            //{
+            //    Debug.Log("値がない: ");
+            //}
 
         }
     }

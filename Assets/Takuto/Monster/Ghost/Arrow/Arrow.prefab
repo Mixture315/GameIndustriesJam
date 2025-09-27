@@ -61,6 +61,9 @@ PrefabInstance:
       addedObject: {fileID: -1481383210709417451}
     - targetCorrespondingSourceObject: {fileID: 987083297778883385, guid: 27277137d0605bd45bd741cdb791e0c1, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2760070107850181522}
+    - targetCorrespondingSourceObject: {fileID: 987083297778883385, guid: 27277137d0605bd45bd741cdb791e0c1, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6633878917769196668}
   m_SourcePrefab: {fileID: 100100000, guid: 27277137d0605bd45bd741cdb791e0c1, type: 3}
 --- !u!1 &2479397540808080018 stripped
@@ -83,6 +86,20 @@ MonoBehaviour:
   playerTeleportPos: {x: 0, y: 0}
   speed: 5
   facingRight: 1
+  lifeTimer: 1.5
+--- !u!114 &2760070107850181522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2479397540808080018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10dcaa9fcaef21447a990b6a24066bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTeleportPos: {x: 0, y: 0}
 --- !u!61 &6633878917769196668
 BoxCollider2D:
   m_ObjectHideFlags: 0
