@@ -9,6 +9,7 @@ public class Damagetreatment : MonoBehaviour
     // ワープ位置
     public Vector2 playerTeleportPos = new Vector2(0, 0);
 
+
     void Start()
     {
 
@@ -30,14 +31,15 @@ public class Damagetreatment : MonoBehaviour
             if (camera != null)
             {
                 StartCoroutine(camera.Shake(0.3f, 0.5f));
-                player.gameObject.SetActive(false);
 
                 // プレイヤーの加速度を0にする
                 player.myRigid.velocity = Vector3.zero;
 
                 // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
                 player.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
-
+                SpriteRenderer sprite = player.GetComponent<SpriteRenderer>();
+                sprite.enabled = false;
+                player.interval_time = 0.5f;
             }
             else
             {

@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
     [Header("プレイヤーの位置情報記録頻度")]
     public float positionRecordTime;
 
+    [Header("プレイヤーの再出現")]
+    public float interval_time;
+
+
+
     [HideInInspector]
     public int coinCount = 0;
     [HideInInspector]
@@ -70,7 +75,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //コンポーネント取得
-        myRigid = GetComponent<Rigidbody2D>();       
+        myRigid = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         myAudioSource = GetComponent<AudioSource>();
@@ -90,18 +95,19 @@ public class PlayerController : MonoBehaviour
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
         GhostPosCheck();//プレイヤーのポジションの記録
+        AppearanceInterval();
     }
 
     private void FixedUpdate()
     {
-       
+
     }
 
     void Move()
     {
         maxHorizontalVelocityMag = 1 + coinCount * coinGetAcceleration;
         maxHorizontalVelocity = startMaxHorizontalVelocity * maxHorizontalVelocityMag;
-       
+
         if (isDash == false)
         {
             float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
@@ -127,13 +133,13 @@ public class PlayerController : MonoBehaviour
                 myRigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Force);
                 myAudioSource.PlayOneShot(jumpVoice);
             }
-            else if(isRightWallTouch == true)
+            else if (isRightWallTouch == true)
             {
                 myRigid.velocity = Vector3.zero;
                 myRigid.AddForce(rightWallJumpDirection * wallJumpPower, ForceMode2D.Force);
                 myAudioSource.PlayOneShot(jumpVoice);
             }
-            else if(isLeftWallTouch == true)
+            else if (isLeftWallTouch == true)
             {
                 myRigid.velocity = Vector3.zero;
                 myRigid.AddForce(leftWallJumpDirection * wallJumpPower, ForceMode2D.Force);
@@ -144,8 +150,8 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if (Mathf.Approximately(myRigid.velocity.x,0.0f)) return;
-        if(Input.GetKeyDown(KeyCode.KeypadEnter) && isDash == false && dashOk == true)
+        if (Mathf.Approximately(myRigid.velocity.x, 0.0f)) return;
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && isDash == false && dashOk == true)
         {
             dashOk = false;
             isDash = true;
@@ -167,7 +173,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DashReset());
         }
 
-        if(isDash)
+        if (isDash)
         {
             if ((dashDirection.x > 0.01f && isRightWallTouch) || dashDirection.x < -0.01f && isLeftWallTouch)
                 return;
@@ -178,11 +184,11 @@ public class PlayerController : MonoBehaviour
     }
     void Anim()
     {
-        if(myRigid.velocity.x > 0.01f)
+        if (myRigid.velocity.x > 0.01f)
         {
             mySpriteRenderer.flipX = false;
         }
-        else if(myRigid.velocity.x < -0.01f)
+        else if (myRigid.velocity.x < -0.01f)
         {
             mySpriteRenderer.flipX = true;
         }
@@ -204,7 +210,7 @@ public class PlayerController : MonoBehaviour
             myAnim.SetTrigger("Wait");
         }
     }
-   
+
     void GhostPosCheck()
     {
         if (SceneManager.GetActiveScene().name == "Title")
@@ -231,8 +237,23 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isDash = false;
         myRigid.gravityScale = gravityScale;
-       
+
         yield return new WaitForSeconds(dashCoolTime);
         dashOk = true;
     }
+
+    void AppearanceInterval()
+    {
+        interval_time -= Time.deltaTime;
+
+        if (interval_time <= 0.0f)
+        {
+            interval_time = 0.0f;
+
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            sprite.enabled = true;
+        }
+    }
+
+
 }

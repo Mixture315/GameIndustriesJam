@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,8 @@ public class CameraShake : MonoBehaviour
         // スペースキーが押されたらシェイク開始
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(Shake(duration, magnitude));
+            var impulseSource = GetComponent<CinemachineImpulseSource>();
+            impulseSource.GenerateImpulse();
         }
     }
 
