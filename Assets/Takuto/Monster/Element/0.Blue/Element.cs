@@ -116,10 +116,10 @@ public class Element_Blue : MonoBehaviour
         if (pc != null)
         {
             // プレイヤーの加速度を0にする
-            pc.myRigid.velocity = Vector3.zero;
+            player.myRigid.velocity = Vector3.zero;
 
             // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
-            pc.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
+            player.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
         }
     }
 }
