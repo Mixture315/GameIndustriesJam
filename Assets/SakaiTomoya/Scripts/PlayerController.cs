@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         Jump();//ジャンプ処理
         Dash();//ダッシュ処理
         Anim();//アニメーション処理
-        //GhostPosCheck();//プレイヤーのポジションの記録
+        GhostPosCheck();//プレイヤーのポジションの記録
     }
 
     private void FixedUpdate()
