@@ -16,6 +16,9 @@ public class Ghost : MonoBehaviour
     [Header("矢のプレハブ")]
     public GameObject arrowPrefab;
 
+    [Header("矢の速度")]
+    public float setSpeed = 5f;
+
     [Header("矢の生存時間")]
     public float setLifeTimer = 1.5f;
 
@@ -107,9 +110,11 @@ public class Ghost : MonoBehaviour
             Arrow arrowScript = arrow.GetComponent<Arrow>();
             if (arrowScript != null)
             {
+                // 矢の速度を設定
+                arrowScript.speed = setSpeed;
                 // 生存時間を設定
                 arrowScript.lifeTimer = setLifeTimer;
-
+                // 向きを設定
                 arrowScript.facingRight = transform.rotation.eulerAngles.y == 180;
             }
         }

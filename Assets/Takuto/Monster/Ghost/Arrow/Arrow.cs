@@ -8,13 +8,13 @@ public class Arrow : MonoBehaviour
     // ワープ位置
     public Vector2 playerTeleportPos = new Vector2(0, 0);
 
-    [Header("矢の速度")]
+    // 速度
     public float speed = 5f;
 
     [Header("矢が右向きか？")]
     public bool facingRight = true;
 
-
+    // 生存時間
     public float lifeTimer = 1.5f;
 
     // Start is called before the first frame update

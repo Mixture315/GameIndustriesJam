@@ -148,8 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04943150135af99438b9b60c83c329ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTeleportPos: {x: 0, y: 0}
   setShotWaitTime: 2
   arrowPrefab: {fileID: 2479397540808080018, guid: a8e132c05824d304fb1c0cd4ae25b39c, type: 3}
+  setSpeed: 5
+  setLifeTimer: 1.5
 --- !u!70 &1680318703182007085
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
