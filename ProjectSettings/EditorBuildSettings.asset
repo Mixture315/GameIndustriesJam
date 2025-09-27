@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ninomaru/Scene/title.unity
-    guid: ac5ad6a6cd7c9c54dbba6f0df63e3707
+    path: Assets/namikoshi/Title.unity
+    guid: 3a1031b141e2b1d48a925ec2a6120860
   - enabled: 1
     path: Assets/ninomaru/Scene/select.unity
     guid: 6d7b87986645656499daf391a636703e
