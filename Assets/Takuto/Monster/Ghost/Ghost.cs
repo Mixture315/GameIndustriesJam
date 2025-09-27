@@ -16,6 +16,9 @@ public class Ghost : MonoBehaviour
     [Header("–î‚ÌƒvƒŒƒnƒu")]
     public GameObject arrowPrefab;
 
+    [Header("–î‚Ì¶‘¶ŠÔ")]
+    public float setLifeTimer = 1.5f;
+
     private Rigidbody2D rb;
     private PlayerController player;
 
@@ -100,11 +103,13 @@ public class Ghost : MonoBehaviour
 
             // –î‚ğ¶¬
             GameObject arrow = Instantiate(arrowPrefab, shotPosition, Quaternion.identity);
-
-            // –î‚ÌŒü‚«‚ğİ’è
+            // –î‚ğæ“¾
             Arrow arrowScript = arrow.GetComponent<Arrow>();
             if (arrowScript != null)
             {
+                // ¶‘¶ŠÔ‚ğİ’è
+                arrowScript.lifeTimer = setLifeTimer;
+
                 arrowScript.facingRight = transform.rotation.eulerAngles.y == 180;
             }
         }

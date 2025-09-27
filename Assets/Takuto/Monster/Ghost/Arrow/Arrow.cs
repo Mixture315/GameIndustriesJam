@@ -14,6 +14,9 @@ public class Arrow : MonoBehaviour
     [Header("矢が右向きか？")]
     public bool facingRight = true;
 
+
+    public float lifeTimer = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,8 @@ public class Arrow : MonoBehaviour
         // X方向に進む
         float moveDir = facingRight ? 1f : -1f;
         transform.position += new Vector3(moveDir * speed * Time.deltaTime, 0, 0);
+
+        Life();
     }
 
     // 当たり判定
@@ -40,6 +45,16 @@ public class Arrow : MonoBehaviour
 
             // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
             pc.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
+        }
+    }
+
+    void Life()
+    {
+        lifeTimer -= Time.deltaTime;
+
+        if(lifeTimer <= 0f)
+        {
+            Destroy(gameObject);
         }
     }
 }
