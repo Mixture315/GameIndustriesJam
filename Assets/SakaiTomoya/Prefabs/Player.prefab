@@ -10277,6 +10277,7 @@ MonoBehaviour:
   dashVoice: {fileID: 8300000, guid: de2f193246df7bf428e09398d6f4cdab, type: 3}
   gravityScale: 20
   coinGetAcceleration: 0.1
+  positionRecordTime: 0.2
   coinCount: 0
   isGround: 0
   isRightWallTouch: 0

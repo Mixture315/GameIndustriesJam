@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     void Dash()
     {
         if (Mathf.Approximately(myRigid.velocity.x,0.0f)) return;
-        if(Input.GetKeyDown(KeyCode.LeftShift) && isDash == false && dashOk == true)
+        if(Input.GetKeyDown(KeyCode.KeypadEnter) && isDash == false && dashOk == true)
         {
             dashOk = false;
             isDash = true;
