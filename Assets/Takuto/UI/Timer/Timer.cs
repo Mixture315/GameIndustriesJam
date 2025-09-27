@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
     public float timeF = 0;
 
     [Header("タイマーストップ")]
-    bool timerStop   = false;
+    public bool timerStop   = false;
 
     // Start is called before the first frame update
     void Start()
