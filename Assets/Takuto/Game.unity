@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 519033188}
     m_Modifications:
+    - target: {fileID: -8278709903875070656, guid: 75ca1aec576b2f14d955dfc7770c6734, type: 3}
+      propertyPath: setLifeTimer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8665223902483061996, guid: 75ca1aec576b2f14d955dfc7770c6734, type: 3}
       propertyPath: m_Name
       value: Ghost
@@ -1298,6 +1302,7 @@ MonoBehaviour:
   playerTeleportPos: {x: 0, y: 0}
   setShotWaitTime: 1
   arrowPrefab: {fileID: 0}
+  setLifeTimer: 1.5
 --- !u!1001 &480135498678240800
 PrefabInstance:
   m_ObjectHideFlags: 0
