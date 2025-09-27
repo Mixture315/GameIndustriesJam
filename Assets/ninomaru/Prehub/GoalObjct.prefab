@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1100317273032384971, guid: 04e63fe0369f3c24bb79980c6a637ec4, type: 3}
+  timer: {fileID: 1996329722851862477, guid: 90678676b9d500546974bd1dfb3921c6, type: 3}
 --- !u!61 &5490325955759932929
 BoxCollider2D:
   m_ObjectHideFlags: 0
