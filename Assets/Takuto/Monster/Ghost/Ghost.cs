@@ -25,6 +25,8 @@ public class Ghost : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerController player;
 
+    private Timer timer;
+
     private CapsuleCollider2D col;
 
     // Start is called before the first frame update
@@ -40,6 +42,12 @@ public class Ghost : MonoBehaviour
         if (playerObj != null)
         {
             player = playerObj.GetComponent<PlayerController>();
+        }
+
+        GameObject timerObj = GameObject.FindGameObjectWithTag("Timer");
+        if (timerObj != null)
+        {
+            timer = timerObj.GetComponent<Timer>();
         }
 
         rb = GetComponent<Rigidbody2D>();
@@ -126,6 +134,10 @@ public class Ghost : MonoBehaviour
         PlayerController pc = other.GetComponent<PlayerController>();
         if (pc != null)
         {
+            timer.timeM = 0;
+            timer.timeS = 0;
+            timer.timeF = 0;
+
             // プレイヤーの加速度を0にする
             pc.myRigid.velocity = Vector3.zero;
 
