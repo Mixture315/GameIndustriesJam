@@ -25,6 +25,8 @@ public class Element_Blue : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerController player;
 
+    private Timer timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,12 @@ public class Element_Blue : MonoBehaviour
         if (playerObj != null)
         {
             player = playerObj.GetComponent<PlayerController>();
+        }
+
+        GameObject timerObj = GameObject.FindGameObjectWithTag("Timer");
+        if(timerObj != null)
+        {
+            timer = timerObj.GetComponent<Timer>();
         }
 
         rb = GetComponent<Rigidbody2D>();
@@ -115,6 +123,10 @@ public class Element_Blue : MonoBehaviour
         PlayerController pc = other.GetComponent<PlayerController>();
         if (pc != null)
         {
+            timer.timeM = 0;
+            timer.timeS = 0;
+            timer.timeF = 0;
+
             // プレイヤーの加速度を0にする
             player.myRigid.velocity = Vector3.zero;
 

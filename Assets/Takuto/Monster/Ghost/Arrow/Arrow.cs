@@ -17,11 +17,19 @@ public class Arrow : MonoBehaviour
     // 生存時間
     public float lifeTimer = 1.5f;
 
+    private Timer timer;
+
     // Start is called before the first frame update
     void Start()
     {
         // 発射時に向きを回転で設定
         transform.rotation = facingRight ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
+
+        GameObject timerObj = GameObject.FindGameObjectWithTag("Timer");
+        if (timerObj != null)
+        {
+            timer = timerObj.GetComponent<Timer>();
+        }
     }
 
     // Update is called once per frame
@@ -40,6 +48,10 @@ public class Arrow : MonoBehaviour
         PlayerController pc = other.GetComponent<PlayerController>();
         if (pc != null)
         {
+            timer.timeM = 0;
+            timer.timeS = 0;
+            timer.timeF = 0;
+
             // プレイヤーの加速度を0にする
             pc.myRigid.velocity = Vector3.zero;
 
