@@ -30,18 +30,18 @@ public class Gear : MonoBehaviour
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        PlayerController player = other.GetComponent<PlayerController>();
-        if (player != null)
-        {
-            Debug.Log("指定キャラと接触！ 相手は: " + other.gameObject.name);
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    PlayerController player = other.GetComponent<PlayerController>();
+    //    if (player != null)
+    //    {
+    //        Debug.Log("指定キャラと接触！ 相手は: " + other.gameObject.name);
 
-            // プレイヤーの加速度を0にする
-            player.myRigid.velocity = Vector3.zero;
+    //        // プレイヤーの加速度を0にする
+    //        player.myRigid.velocity = Vector3.zero;
 
-            // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
-            player.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
-        }
-    }
+    //        // プレイヤーの位置を移動（Vector2 から Vector3 へ変換）
+    //        player.transform.position = new Vector3(playerTeleportPos.x, playerTeleportPos.y, other.transform.position.z);
+    //    }
+    //}
 }

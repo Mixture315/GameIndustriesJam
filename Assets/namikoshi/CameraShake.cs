@@ -16,14 +16,14 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// スペースキーが押されたらシェイク開始
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    StartCoroutine(Shake(duration, magnitude));
-        //}
+        // スペースキーが押されたらシェイク開始
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Shake(duration, magnitude));
+        }
     }
 
-    private IEnumerator Shake(float duration, float magnitude)
+    public IEnumerator Shake(float duration, float magnitude)
     {
         Vector3 originalPos = transform.position; // Zは固定
 
@@ -35,10 +35,6 @@ public class CameraShake : MonoBehaviour
             float offsetX = Random.Range(-1f, 1f) * magnitude;
             float offsetY = Random.Range(-1f, 1f) * magnitude;
 
-            //アップデート中断するのでこっちで処理する
-            CameraController cameraController = GetComponent<CameraController>();
-
-            originalPos = cameraController.Tracking(originalPos);
 
             transform.position = new Vector3(
                 originalPos.x + offsetX,
