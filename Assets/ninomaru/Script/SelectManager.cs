@@ -93,7 +93,7 @@ public class SelectManager : MonoBehaviour
         {
             maskTexture = maskTexture,
             backgroundColor = Color.yellow,
-            nextScene = count
+            nextScene = count + 1
         };
         TransitionKit.instance.transitionWithDelegate(mask);
 
